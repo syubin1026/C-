@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+#define MAX_ITEMS 5
+
+void display_menu() {
+    printf("\n메뉴:\n");
+    printf("1. 입고\n");
+    printf("2. 판매\n");
+    printf("3. 상품 현황\n");
+    printf("4. 종료\n");
+}
+
+int main() {
+    int inventory[MAX_ITEMS] = {0};
+    int sales[MAX_ITEMS] = {0};
+    int choice;
+
+    while (1) {
+        display_menu();
+        printf("메뉴 선택: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: {
+                for (int i = 0; i < MAX_ITEMS; i++) {
+                    printf("상품 %d의 입고 수량: ", i + 1);
+                    scanf("%d", &inventory[i]);
+                }
+                break;
+            }
+            case 2: {
+                for (int i = 0; i < MAX_ITEMS; i++) {
+                    printf("상품 %d의 판매 수량: ", i + 1);
+                    scanf("%d", &sales[i]);
+                }
+                break;
+            }
+            case 3: {
+                printf("\n상품 현황:\n");
+                for (int i = 0; i < MAX_ITEMS; i++) {
+                    int stock = inventory[i] - sales[i];
+                    printf("상품 %d - 입고: %d, 판매: %d, 재고: %d\n", i + 1, inventory[i], sales[i], stock);
+                }
+                break;
+            }
+            case 4:
+                printf("프로그램을 종료합니다.\n");
+                return 0;
+            default:
+                printf("잘못된 선택입니다. 다시 시도하세요.\n");
+        }
+    }
+}
